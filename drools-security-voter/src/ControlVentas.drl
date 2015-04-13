@@ -1,0 +1,12 @@
+package co.edu.eafit.movilidad.rules
+ 
+import co.m4solutions.drools.authorization.model.RequestInfoHolder;
+ 
+rule "Venta"
+	when
+		obj : CerberoBusinessObject(rolPersona == "ROLE_USER", ((org.springframework.webflow.samples.booking.Hotel)variables["hotel"]).price == 300)
+	then
+		obj.setResultado(true);
+		obj.setMensaje("Ha superado el monto sobre el cual tiene permisos");
+
+end
